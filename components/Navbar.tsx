@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import CabalLogo from "@/assets/images/main-logo-th.webp";
+import CabalLogo from "../public/assets/images/main-logo-th.webp";
 import { ChevronDown } from "lucide-react";
 
 import {

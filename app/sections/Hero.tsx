@@ -1,0 +1,32 @@
+import React from 'react'
+
+function Hero() {
+  return (
+    <div className="relative h-screen w-full bg-black overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0">
+        <video 
+          className="w-full h-full object-cover"
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          src="/assets/video/Mock_Teaser.mp4"
+        ></video>
+      </div>
+      
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black opacity-30"></div>
+      
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center justify-end h-screen pb-16">
+        <div className="text-center text-white">
+          <h3 className="text-xl md:text-2xl">สงความแห่งความเท่าเทียม</h3>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">สู้กันด้วยศักดิ์ศรีชิงความเป็นหนึ่ง</h1>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Hero;

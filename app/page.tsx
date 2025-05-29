@@ -1,5 +1,5 @@
 import React from 'react'
-import Hero from '@/sections/Hero'
+import Hero from '@/app/sections/Hero'
 
 function page() {
   return (
