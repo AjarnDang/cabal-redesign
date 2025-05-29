@@ -5,7 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import CabalLogo from "../public/assets/images/main-logo-th.webp";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, User, Globe } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -168,7 +168,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="flex gap-2 items-stretch h-full">
+          <div className="flex gap-6 items-stretch h-full">
             {/* Mobile menu button */}
             <div className="lg:hidden flex items-center">
               <button
@@ -204,8 +204,34 @@ const Navbar = () => {
               </button>
             </div>
 
+            {/* Login Icon */}
             <Link
-              href="/register"
+              href="#"
+              className={cn(
+                "relative hidden lg:inline-flex items-center justify-center text-sm font-medium transition-all",
+                "text-muted-foreground hover:text-foreground",
+                "group"
+              )}
+              title="เข้าสู่ระบบ"
+            >
+              <User size={20} />
+            </Link>
+
+            {/* Go to SEA Icon */}
+            <Link
+              href="#"
+              className={cn(
+                "relative hidden lg:inline-flex items-center justify-center text-sm font-medium transition-all",
+                "text-muted-foreground hover:text-foreground",
+                "group"
+              )}
+              title="ไปยังเซิร์ฟเวอร์ SEA"
+            >
+              <Globe size={20} />
+            </Link>
+
+            <Link
+              href="#"
               className={cn(
                 "relative inline-flex items-center justify-center px-8 text-sm font-bold transition-all lg:min-w-32 min-w-20",
                 "bg-primary text-primary-foreground",
@@ -305,6 +331,22 @@ const Navbar = () => {
           </div>
           
           <MobileNavLink href="#" label="เติมเงิน" />
+          
+          {/* Login and SEA in Mobile Menu */}
+          <div className="mt-4 pt-4 border-t border-border/20">
+            <MobileNavLink href="#" label="เข้าสู่ระบบ" />
+            <MobileNavLink href="#" label="เซิร์ฟเวอร์ SEA" />
+          </div>
+          
+          {/* Play Now Button in Mobile Menu */}
+          <div className="mt-4 px-3">
+            <Link
+              href="#"
+              className="block w-full py-3 bg-primary text-primary-foreground text-center font-bold"
+            >
+              เล่นฟรี
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
