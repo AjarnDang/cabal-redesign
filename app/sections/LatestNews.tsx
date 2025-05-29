@@ -37,6 +37,32 @@ const newsData = [
   },
 ];
 
+// Card component
+const NewsCard = ({ news }: { news: any }) => {
+    return (
+      <div className="flex flex-col h-full">
+        <div className="relative min-h-64 max-h-64 mb-4 overflow-hidden">
+          {/* เราใช้ div ที่มี background เป็นตัวแทนของรูปภาพในกรณีที่ยังไม่มีรูปจริง */}
+          <div
+            className="absolute inset-0 bg-gray-200"
+            style={{
+              backgroundImage: `url(${news.imageUrl})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        </div>
+        <div className="flex-1 flex flex-col">
+          <div className="text-sm text-muted-foreground mb-2">
+            {news.category} | {news.date}
+          </div>
+          <h3 className="text-xl font-bold mb-2">{news.title}</h3>
+          <p className="text-muted-foreground mb-4 flex-1">{news.excerpt}</p>
+        </div>
+      </div>
+    );
+  };
+
 const LatestNews = () => {
   return (
     <section className="py-16">
@@ -59,32 +85,6 @@ const LatestNews = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-// Card component
-const NewsCard = ({ news }: { news: any }) => {
-  return (
-    <div className="flex flex-col h-full">
-      <div className="relative min-h-64 mb-4 overflow-hidden">
-        {/* เราใช้ div ที่มี background เป็นตัวแทนของรูปภาพในกรณีที่ยังไม่มีรูปจริง */}
-        <div
-          className="absolute inset-0 bg-gray-200"
-          style={{
-            backgroundImage: `url(${news.imageUrl})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-      </div>
-      <div className="flex-1 flex flex-col">
-        <div className="text-sm text-muted-foreground mb-2">
-          {news.category} | {news.date}
-        </div>
-        <h3 className="text-xl font-bold mb-2">{news.title}</h3>
-        <p className="text-muted-foreground mb-4 flex-1">{news.excerpt}</p>
-      </div>
-    </div>
   );
 };
 
