@@ -37,17 +37,15 @@ const StoryTelling = () => {
     <div className="sticky_wrap">
       <section
         ref={sectionRef}
-        className="relative h-[1013px] py-16 flex items-center bg-[0_center] pt pt5"
-        style={{ paddingTop: '82px', zIndex: 4 }}
+        className="relative h-[1013px] py-16 flex items-center bg-[0_center]"
+        style={{ paddingTop: "82px", zIndex: 4 }}
       >
-        {/* Background image styled like pt5-bg */}
-        <div className="pt5-bg absolute left-0 top-[-98px] w-full">
+        <div className="absolute inset-0 left-0 top-[-98px] w-full">
           <Image
             src="/assets/images/roadmap-bg-4.png"
             alt="Roadmap Background"
-            width={1920}
-            height={1080}
-            className="w-full object-cover"
+            fill
+            className="object-cover"
             priority
           />
         </div>
@@ -55,22 +53,6 @@ const StoryTelling = () => {
         <div className="container relative z-30 mx-auto px-4 md:px-6">
           <div className="section_inner">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              {/* Character ในตำแหน่งปกติ (ไม่ใช่ absolute) */}
-              <div className="relative">
-                <motion.div
-                  className="w-full h-[450px] md:h-[550px] lg:h-[850px] z-10"
-                  style={{ y: characterY }}
-                >
-                  <Image
-                    src="/assets/characters/Duo_2.png"
-                    alt="Duo Characters"
-                    fill
-                    className="object-contain object-center"
-                    priority
-                  />
-                </motion.div>
-              </div>
-
               {/* Content with parallax effect */}
               <motion.div className="subject_info space-y-8 lg:text-left text-center relative z-20">
                 <motion.div className="space-y-4" style={{ y: titleY }}>
@@ -104,10 +86,23 @@ const StoryTelling = () => {
                   </div>
                 </div>
               </motion.div>
+
+              <div className="relative">
+                <motion.div
+                  className="w-full h-[450px] md:h-[550px] lg:h-[850px] z-10"
+                  style={{ y: characterY }}
+                >
+                  <Image
+                    src="/assets/characters/Duo_2.png"
+                    alt="Duo Characters"
+                    fill
+                    className="object-contain object-center"
+                    priority
+                  />
+                </motion.div>
+              </div>
             </div>
           </div>
-
-          {/* สามารถเพิ่ม section_inner legacy ตามตัวอย่างได้ในอนาคต */}
         </div>
       </section>
     </div>

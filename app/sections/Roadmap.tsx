@@ -24,12 +24,12 @@ const Roadmap = () => {
     <div className="sticky_wrap">
       <section
         ref={sectionRef}
-        className="relative h-screen py-16 flex items-center"
+        className="relative h-[1013px] py-16 flex items-center bg-[0_center]"
+        style={{ paddingTop: "82px", zIndex: 4 }}
       >
-        {/* ปรับเป็น Background Image แบบปกติ */}
-        <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 w-full left-0 top-[-52px]">
           <Image
-            src="/assets/images/615291.jpg"
+            src="/assets/images/615291.png"
             alt="Roadmap Background"
             fill
             className="object-cover"
