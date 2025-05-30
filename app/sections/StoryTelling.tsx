@@ -35,6 +35,19 @@ const StoryTelling = () => {
 
   return (
     <div className="sticky_wrap">
+      
+      <section className="relative h-[1013px] py-16 flex items-center bg-[0_center]">
+        <div className="absolute inset-0 left-0 top-[-98px] w-full">
+          <Image
+            src="/assets/images/Frozen_land.png"
+            alt="Roadmap Background"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      </section>
+
       <section
         ref={sectionRef}
         className="relative h-[1013px] py-16 flex items-center bg-[0_center]"
