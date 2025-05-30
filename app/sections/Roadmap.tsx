@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
+import ButtonTheme from "@/components/ButtonTheme";
 
 const Roadmap = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -77,9 +78,12 @@ const Roadmap = () => {
               </p>
             </div>
 
-            <button className="px-6 py-3 bg-primary text-primary-foreground font-bold rounded-md hover:bg-primary/90 transition-colors">
+            <ButtonTheme
+              type="primary"
+              size="large"
+            >
               สมัครเข้าร่วมการแข่งขัน
-            </button>
+            </ButtonTheme>
           </div>
         </div>
       </div>
