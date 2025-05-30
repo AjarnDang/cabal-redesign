@@ -8,6 +8,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-noto-sans-thai);
   --font-mono: system-ui, monospace;
+  --font-accent-b: var(--font-bellefair);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -116,7 +117,303 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .before\:opacity-15::before {
+    opacity: 0.15;
+  }
+
+  .after\:bg-size-400\% {
+    background-size: 400% 400%;
+  }
+
+  /* พื้นผิวแบบ scratch สำหรับปุ่ม */
+  .scratch-effect {
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  
+  .scratch-effect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/assets/buttonElements/scratch-effect.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  
+  .scratch-effect:hover {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .scratch-effect::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      to right, 
+      rgba(255, 255, 255, 0) 0%, 
+      rgba(255, 255, 255, 0.15) 50%, 
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .scratch-effect:hover::before {
+    opacity: 0.2;
+    transition: opacity 0.3s ease;
+  }
+  
+  .scratch-effect:hover::after {
+    opacity: 1;
+    animation: shine 1.5s ease-in-out;
+  }
+  
+  @keyframes shine {
+    0% {
+      left: -100%;
+      opacity: 0.7;
+    }
+    100% {
+      left: 150%;
+      opacity: 0.7;
+    }
+  }
+
+  .scratch-effect:active::before {
+    opacity: 0.25;
+    transition: opacity 0.1s ease;
+  }
+  
+  .scratch-effect:active {
+    border-top-color: rgba(0, 0, 0, 0.2);
+    border-left-color: rgba(0, 0, 0, 0.1);
+    border-right-color: rgba(255, 255, 255, 0.05);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Button Theme Styles */
+[data-type="primary"],
+[data-type="secondary"] {
+  position: relative;
+  background-color: transparent;
+  font-family: var(--font-accent-b) !important;
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+  text-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
+  color: #E5E0C8;
+  filter: drop-shadow(0px 5px 8px rgba(0, 0, 0, 0.66));
+}
+
+@media (min-width: 960px) {
+  [data-type="primary"] {
+    height: 93px;
+  }
+
+  [data-type="primary"]::before,
+  [data-type="primary"]::after,
+  [data-type="secondary"]::before,
+  [data-type="secondary"]::after {
+    background-size: auto 100%, auto 100%, auto 100%, auto calc(100% - 20px), auto calc(100% - 20px), 82% calc(100% - 20px);
+  }
+}
+
+[data-type="primary"]::before,
+[data-type="primary"]::after,
+[data-type="secondary"]::before,
+[data-type="secondary"]::after {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: opacity 350ms, color 350ms, filter 350ms;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background-repeat: no-repeat;
+  background-position: left center, right center, center center, 10px center, calc(100% - 10px) center, center center;
+  background-size: auto 100%, auto 100%, auto 100%, auto calc(100% - 18px), auto calc(100% - 18px), 82% calc(100% - 18px);
+}
+
+/* Primary Button Base */
+[data-type="primary"]::before {
+  background-image:
+    url('/assets/buttonElements/d4-button-filigree-left.webp'),
+    url('/assets/buttonElements/d4-button-filigree-right.webp'),
+    url('/assets/buttonElements/d4-button-filigree-center.webp'),
+    url('/assets/buttonElements/d4-button-primary-left-base.webp'),
+    url('/assets/buttonElements/d4-button-primary-right-base.webp'),
+    url('/assets/buttonElements/d4-button-primary-tile-base.webp');
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  [data-type="primary"]::before {
+    background-image:
+      url('/assets/buttonElements/d4-button-filigree-left.webp'),
+      url('/assets/buttonElements/d4-button-filigree-right.webp'),
+      url('/assets/buttonElements/d4-button-filigree-center.webp'),
+      url('/assets/buttonElements/d4-button-primary-left-base.webp'),
+      url('/assets/buttonElements/d4-button-primary-right-base.webp'),
+      url('/assets/buttonElements/d4-button-primary-tile-base.webp');
+  }
+}
+
+/* Primary Button Hover */
+[data-type="primary"]::after {
+  opacity: 0;
+  background-image:
+    url('/assets/buttonElements/d4-button-filigree-left.webp'),
+    url('/assets/buttonElements/d4-button-filigree-right.webp'),
+    url('/assets/buttonElements/d4-button-filigree-center.webp'),
+    url('/assets/buttonElements/d4-button-primary-left-base.webp'),
+    url('/assets/buttonElements/d4-button-primary-right-base.webp'),
+    url('/assets/buttonElements/d4-button-primary-tile-base.webp');
+  filter: brightness(1.3) saturate(1.3);
+  transition: opacity 0.3s ease;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  [data-type="primary"]::after {
+    background-image:
+      url('/assets/buttonElements/d4-button-filigree-left.webp'),
+      url('/assets/buttonElements/d4-button-filigree-right.webp'),
+      url('/assets/buttonElements/d4-button-filigree-center.webp'),
+      url('/assets/buttonElements/d4-button-primary-left-base.webp'),
+      url('/assets/buttonElements/d4-button-primary-right-base.webp'),
+      url('/assets/buttonElements/d4-button-primary-tile-base.webp');
+  }
+}
+
+[data-type="primary"]:hover::after {
+  opacity: 1;
+}
+
+/* Secondary Button Base */
+[data-type="secondary"]::before {
+  background-image:
+    url('/assets/buttonElements/d4-button-filigree-left.webp'),
+    url('/assets/buttonElements/d4-button-filigree-right.webp'),
+    url('/assets/buttonElements/d4-button-filigree-center.webp'),
+    url('/assets/buttonElements/d4-button-primary-left-base.webp'),
+    url('/assets/buttonElements/d4-button-primary-right-base.webp'),
+    url('/assets/buttonElements/d4-button-primary-tile-base.webp');
+  filter: hue-rotate(210deg) saturate(0.8);
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  [data-type="secondary"]::before {
+    background-image:
+      url('/assets/buttonElements/d4-button-filigree-left.webp'),
+      url('/assets/buttonElements/d4-button-filigree-right.webp'),
+      url('/assets/buttonElements/d4-button-filigree-center.webp'),
+      url('/assets/buttonElements/d4-button-primary-left-base.webp'),
+      url('/assets/buttonElements/d4-button-primary-right-base.webp'),
+      url('/assets/buttonElements/d4-button-primary-tile-base.webp');
+    filter: hue-rotate(210deg) saturate(0.8);
+  }
+}
+
+/* Secondary Button Hover */
+[data-type="secondary"]::after {
+  opacity: 0;
+  background-image:
+    url('/assets/buttonElements/d4-button-filigree-left.webp'),
+    url('/assets/buttonElements/d4-button-filigree-right.webp'),
+    url('/assets/buttonElements/d4-button-filigree-center.webp'),
+    url('/assets/buttonElements/d4-button-primary-left-base.webp'),
+    url('/assets/buttonElements/d4-button-primary-right-base.webp'),
+    url('/assets/buttonElements/d4-button-primary-tile-base.webp');
+  filter: hue-rotate(210deg) saturate(0.8) brightness(1.3);
+  transition: opacity 0.3s ease;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  [data-type="secondary"]::after {
+    background-image:
+      url('/assets/buttonElements/d4-button-filigree-left.webp'),
+      url('/assets/buttonElements/d4-button-filigree-right.webp'),
+      url('/assets/buttonElements/d4-button-filigree-center.webp'),
+      url('/assets/buttonElements/d4-button-primary-left-base.webp'),
+      url('/assets/buttonElements/d4-button-primary-right-base.webp'),
+      url('/assets/buttonElements/d4-button-primary-tile-base.webp');
+    filter: hue-rotate(210deg) saturate(0.8) brightness(1.3);
+  }
+}
+
+[data-type="secondary"]:hover::after {
+  opacity: 1;
+}
+
+/* เพิ่มเอฟเฟกต์เรืองแสงเมื่อ hover */
+.optional-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+[data-type="primary"]:hover .optional-fill {
+  opacity: 0.3;
+  background: radial-gradient(circle, rgba(255, 150, 50, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+[data-type="secondary"]:hover .optional-fill {
+  opacity: 0.3;
+  background: radial-gradient(circle, rgba(80, 160, 255, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+/* Size-specific styles */
+[data-size="large"] {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+
+[data-size="medium"] {
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+
+[data-size="small"] {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+
+/* Full width buttons */
+[data-full-width="true"] {
+  width: 100%;
+  justify-content: center;
 }

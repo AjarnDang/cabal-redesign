@@ -1,5 +1,7 @@
 import React from "react";
 import { ChevronDown } from "lucide-react";
+import ButtonTheme from "@/components/ButtonTheme";
+
 function Hero() {
   return (
     <div className="relative h-screen w-full bg-black overflow-hidden">
@@ -29,7 +31,7 @@ function Hero() {
               สู้กันด้วยศักดิ์ศรีชิงความเป็นหนึ่ง
             </h1>
           </div>
-          <button className="bg-white text-black font-semibold px-12 py-4">เล่นตอนนี้</button>
+          <ButtonTheme type="primary" size="large">เล่นตอนนี้</ButtonTheme>
         </div>
         <div className="text-center text-white">
           <p className="font-semibold mb-1">เลื่อนลงเพื่อดูเนื้อหา</p>

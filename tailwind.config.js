@@ -19,6 +19,7 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-noto-sans-thai)'],
         mono: ['var(--font-mono)'],
+        bellefair: ['var(--font-bellefair)'],
       },
       colors: {
         border: "var(--border)",

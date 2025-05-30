@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import CabalLogo from "../public/assets/images/main-logo-th.webp";
 import { ChevronDown, User, Globe } from "lucide-react";
+import ButtonGlobal from "./ButtonGlobal";
 
 import {
   DropdownMenu,
@@ -19,7 +20,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileGameMenuOpen, setMobileGameMenuOpen] = useState(false);
   const [mobileCommunityMenuOpen, setMobileCommunityMenuOpen] = useState(false);
-  
+
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const gameMenuButtonRef = useRef<HTMLButtonElement>(null);
   const communityMenuButtonRef = useRef<HTMLButtonElement>(null);
@@ -40,17 +41,26 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
+
   // Update ARIA attributes
   useEffect(() => {
     if (mobileMenuButtonRef.current) {
-      mobileMenuButtonRef.current.setAttribute('aria-expanded', isMobileMenuOpen ? 'true' : 'false');
+      mobileMenuButtonRef.current.setAttribute(
+        "aria-expanded",
+        isMobileMenuOpen ? "true" : "false"
+      );
     }
     if (gameMenuButtonRef.current) {
-      gameMenuButtonRef.current.setAttribute('aria-expanded', mobileGameMenuOpen ? 'true' : 'false');
+      gameMenuButtonRef.current.setAttribute(
+        "aria-expanded",
+        mobileGameMenuOpen ? "true" : "false"
+      );
     }
     if (communityMenuButtonRef.current) {
-      communityMenuButtonRef.current.setAttribute('aria-expanded', mobileCommunityMenuOpen ? 'true' : 'false');
+      communityMenuButtonRef.current.setAttribute(
+        "aria-expanded",
+        mobileCommunityMenuOpen ? "true" : "false"
+      );
     }
   }, [isMobileMenuOpen, mobileGameMenuOpen, mobileCommunityMenuOpen]);
 
@@ -80,7 +90,7 @@ const Navbar = () => {
             <div className="hidden lg:block">
               <div className="flex items-center gap-6">
                 <NavLink href="#" label="หน้าแรก" active />
-                
+
                 {/* ข้อมูลเกม Dropdown */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -116,11 +126,11 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-                
+
                 <NavLink href="#" label="สื่อ" />
                 <NavLink href="#" label="อีสปอร์ต" />
                 <NavLink href="#" label="ข่าวสาร" />
-                
+
                 {/* คอมมูนิตี้ Dropdown */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -162,7 +172,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-                
+
                 <NavLink href="#" label="เติมเงิน" />
               </div>
             </div>
@@ -230,16 +240,14 @@ const Navbar = () => {
               <Globe size={20} />
             </Link>
 
-            <Link
+            <ButtonGlobal
               href="#"
-              className={cn(
-                "relative inline-flex items-center justify-center px-8 text-sm font-bold transition-all lg:min-w-32 min-w-20",
-                "bg-primary text-primary-foreground",
-                "group"
-              )}
+              variant="primary"
+              size="md"
+              className="lg:min-w-32 min-w-20 scratch-effect"
             >
-              <span className="relative flex items-center gap-1">เล่นฟรี</span>
-            </Link>
+              เล่นฟรี
+            </ButtonGlobal>
           </div>
         </div>
       </div>
@@ -253,7 +261,7 @@ const Navbar = () => {
       >
         <div className="px-4 py-3 space-y-1 bg-card/95 backdrop-blur-md h-screen border-t border-border/20">
           <div className="flex w-full justify-end mb-4">
-            <button 
+            <button
               onClick={() => setIsMobileMenuOpen(false)}
               aria-label="Close mobile menu"
             >
@@ -275,7 +283,7 @@ const Navbar = () => {
             </button>
           </div>
           <MobileNavLink href="#" label="หน้าแรก" active />
-          
+
           {/* ข้อมูลเกม Dropdown - Mobile */}
           <div className="px-3 py-2">
             <button
@@ -286,66 +294,79 @@ const Navbar = () => {
               aria-label="Toggle game info menu"
             >
               ข้อมูลเกม
-              <ChevronDown className={cn(
-                "h-4 w-4 transition-transform duration-200",
-                mobileGameMenuOpen ? "rotate-180" : ""
-              )} />
+              <ChevronDown
+                className={cn(
+                  "h-4 w-4 transition-transform duration-200",
+                  mobileGameMenuOpen ? "rotate-180" : ""
+                )}
+              />
             </button>
-            <div className={cn(
-              "pl-4 space-y-1 border-l border-border/40 overflow-hidden transition-all duration-300",
-              mobileGameMenuOpen ? "max-h-40 mt-2" : "max-h-0"
-            )}>
+            <div
+              className={cn(
+                "pl-4 space-y-1 border-l border-border/40 overflow-hidden transition-all duration-300",
+                mobileGameMenuOpen ? "max-h-40 mt-2" : "max-h-0"
+              )}
+            >
               <MobileSubLink href="#" label="โลก CABAL" />
               <MobileSubLink href="#" label="ตัวละคร" />
               <MobileSubLink href="#" label="ระบบเกม" />
             </div>
           </div>
-          
+
           <MobileNavLink href="#" label="สื่อ" />
           <MobileNavLink href="#" label="อีสปอร์ต" />
           <MobileNavLink href="#" label="ข่าวสาร" />
-          
+
           {/* คอมมูนิตี้ Dropdown - Mobile */}
           <div className="px-3 py-2">
             <button
               ref={communityMenuButtonRef}
-              onClick={() => setMobileCommunityMenuOpen(!mobileCommunityMenuOpen)}
+              onClick={() =>
+                setMobileCommunityMenuOpen(!mobileCommunityMenuOpen)
+              }
               className="flex justify-between items-center w-full text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
               aria-expanded="false"
               aria-label="Toggle community menu"
             >
               คอมมูนิตี้
-              <ChevronDown className={cn(
-                "h-4 w-4 transition-transform duration-200",
-                mobileCommunityMenuOpen ? "rotate-180" : ""
-              )} />
+              <ChevronDown
+                className={cn(
+                  "h-4 w-4 transition-transform duration-200",
+                  mobileCommunityMenuOpen ? "rotate-180" : ""
+                )}
+              />
             </button>
-            <div className={cn(
-              "pl-4 space-y-1 border-l border-border/40 overflow-hidden transition-all duration-300",
-              mobileCommunityMenuOpen ? "max-h-40 mt-2" : "max-h-0"
-            )}>
+            <div
+              className={cn(
+                "pl-4 space-y-1 border-l border-border/40 overflow-hidden transition-all duration-300",
+                mobileCommunityMenuOpen ? "max-h-40 mt-2" : "max-h-0"
+              )}
+            >
               <MobileSubLink href="#" label="Facebook Page" />
               <MobileSubLink href="#" label="Facebook Community" />
               <MobileSubLink href="#" label="Discord" />
             </div>
           </div>
-          
+
           <MobileNavLink href="#" label="เติมเงิน" />
-          
+
           {/* Login and SEA in Mobile Menu */}
           <div className="mt-4 pt-4 border-t border-border/20">
             <MobileNavLink href="#" label="เข้าสู่ระบบ" />
             <MobileNavLink href="#" label="เซิร์ฟเวอร์ SEA" />
           </div>
-          
+
           {/* Play Now Button in Mobile Menu */}
           <div className="mt-4 px-3">
-            <Link
+            <ButtonGlobal
               href="#"
-              className="block w-full py-3 bg-primary text-primary-foreground text-center font-bold"
+              variant="primary"
+              size="md"
+              fullWidth
+              className="scratch-effect py-3"
             >
               เล่นฟรี
-            </Link>
+            </ButtonGlobal>
           </div>
         </div>
       </div>
