@@ -3,6 +3,7 @@ import Hero from "@/app/sections/Hero";
 import LatestNews from "@/app/sections/LatestNews";
 import Roadmap from "@/app/sections/Roadmap";
 import StoryTelling from "@/app/sections/StoryTelling";
+import Characters from "@/app/sections/Characters";
 
 function page() {
   return (
@@ -11,6 +12,7 @@ function page() {
       <LatestNews />
       <Roadmap />
       <StoryTelling />
+      <Characters />
     </>
   );
 }
