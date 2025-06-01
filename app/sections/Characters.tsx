@@ -280,7 +280,7 @@ function Characters() {
         </AnimatePresence>
 
         <div className="container relative z-10 mx-auto h-full flex flex-col">
-          
+
           {/* Main Content */}
           <div className="flex-grow grid grid-cols-1 lg:flex lg:flex-row items-center">
 
@@ -343,14 +343,15 @@ function Characters() {
                         objectFit: "contain",
                         filter: "drop-shadow(0 0 20px rgba(255,215,0,0.1))",
                       }}
-                    />
-                  </div>
+        />
+      </div>
                 </motion.div>
               </AnimatePresence>
             </div>
 
             {/* Character dots navigation - Right on desktop, bottom on mobile */}
             <div className="order-3 lg:w-1/6">
+
               {/* Desktop vertical navigation */}
               <div className="hidden lg:flex flex-col items-end justify-center px-4">
                 <div className="py-6 px-3 flex flex-col items-center gap-4 relative">
@@ -406,7 +407,7 @@ function Characters() {
             </div>
           </div>
 
-          {/* Character dots navigation for mobile - Horizontal at bottom */}
+          {/* Character dots navigation for mobile - Horizontal bottom */}
           <div className="character-navigation pt-8 relative z-20 lg:hidden">
             <div className="flex flex-wrap justify-center items-center gap-2 md:gap-4 max-w-fit mx-auto">
               {/* Previous button for mobile */}
@@ -460,7 +461,7 @@ function Characters() {
           </div>
         </div>
 
-      </section>
+    </section>
 
       {/* Fancy Divider Bottom */}
       <div
