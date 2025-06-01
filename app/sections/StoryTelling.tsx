@@ -3,12 +3,13 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import ButtonTheme from "@/components/ButtonTheme";
 
 // Fade-up animation variants
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 100 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.8,
@@ -36,7 +37,7 @@ const WelcomeSection = () => {
   // Content parallax effects
   const titleY = useTransform(scrollYProgress, [0.2, 0.8], [50, -50]);
   const descY = useTransform(scrollYProgress, [0.2, 0.8], [70, -70]);
-  
+
   // Background scale effect
   const bgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.4]);
 
@@ -70,16 +71,25 @@ const WelcomeSection = () => {
             className="subject_info space-y-4 text-center relative z-20"
           >
             <motion.div className="space-y-4" style={{ y: titleY }}>
-              <h6 className="subject_title text-2xl font-bold text-white">
+              <h6
+                className="subject_title text-2xl font-bold text-white"
+                style={{ textShadow: "0 0 10px rgba(0, 0, 0, 0.3)" }}
+              >
                 ยินดีต้อนรับสู่ดินแดนแห่ง
               </h6>
-              <h1 className="text-4xl md:text-7xl font-['Bellefair'] font-extrabold text-white">
+              <h1
+                className="text-4xl md:text-7xl font-['Bellefair'] font-extrabold text-white"
+                style={{ textShadow: "0 0 10px rgba(0, 0, 0, 0.3)" }}
+              >
                 CABAL
               </h1>
             </motion.div>
 
             <motion.div style={{ y: descY }}>
-              <p className="subject_desc text-lg text-white/80 max-w-2xl">
+              <p
+                className="subject_desc text-lg text-white/80 max-w-2xl"
+                style={{ textShadow: "0 0 10px rgba(0, 0, 0, 0.3)" }}
+              >
                 "ก้าวเข้าสู่โลกแห่งเวทมนตร์ อาชีพ ความกล้าหาญ
                 และการต่อสู้ไม่รู้จบ" <br />
                 ที่นี่... ตำนานของคุณกำลังจะเริ่มต้น
@@ -89,7 +99,7 @@ const WelcomeSection = () => {
         </div>
       </div>
 
-      <motion.div 
+      <motion.div
         ref={dungeonRef}
         className="dungeon-and-rune absolute bottom-[-10rem] left-0 w-full z-30"
         initial="hidden"
@@ -112,7 +122,7 @@ const WelcomeSection = () => {
                 </p>
               </div>
             </div>
-            <div className="relative lg:h-[24rem] h-[20rem] overflow-hidden">
+            <div className="relative lg:h-[24rem] h-[20rem] overflow-hidden shadow-xl shadow-amber-950">
               <Image
                 src="/assets/images/nightmare-dungeons-4.avif"
                 alt="Dungeons"
@@ -140,12 +150,15 @@ const CraftingSection = () => {
   });
 
   // Check if in view
-  const isCraftItemInView = useInView(craftItemRef, { once: true, amount: 0.3 });
+  const isCraftItemInView = useInView(craftItemRef, {
+    once: true,
+    amount: 0.3,
+  });
   const isCostumeInView = useInView(costumeRef, { once: true, amount: 0.3 });
-  
+
   // Background scale effect
   const bgScale2 = useTransform(scrollYProgress, [0, 1], [1.3, 1.0]);
-  
+
   // Fireball parallax effect
   const fireballX = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const fireballY = useTransform(scrollYProgress, [0, 1], [0, 30]);
@@ -166,20 +179,20 @@ const CraftingSection = () => {
               backgroundPosition: "center center",
               backgroundSize: "cover",
               scale: bgScale2,
-              transformOrigin: "center"
+              transformOrigin: "center",
             }}
           >
             <div className="absolute inset-0"></div>
           </motion.div>
-          
+
           {/* Fireball Effect */}
-          <motion.div 
+          <motion.div
             className="absolute top-0 right-[10%] w-[200px] h-[200px] z-40"
             style={{
               x: fireballX,
               y: fireballY,
               rotate: fireballRotate,
-              filter: "drop-shadow(0 0 20px rgba(255, 100, 0, 0.5))"
+              filter: "drop-shadow(0 0 20px rgba(255, 100, 0, 0.5))",
             }}
           >
             <Image
@@ -204,10 +217,16 @@ const CraftingSection = () => {
 
             <div className="flex justify-center">
               <div className="lg:text-left text-center">
-                <h3 className="text-4xl font-bold mb-4">
+                <h3
+                  className="text-4xl font-bold mb-4"
+                  style={{ textShadow: "0 0 10px rgba(0, 0, 0, 0.3)" }}
+                >
                   สร้างอุปกรณ์สุดแกร่ง
                 </h3>
-                <p className="text-white/80">
+                <p
+                  className="text-white/80"
+                  style={{ textShadow: "0 0 10px rgba(0, 0, 0, 0.3)" }}
+                >
                   ไม่ใช่แค่ต่อสู้เก่ง... แต่ต้องรู้จักสร้างสิ่งล้ำค่า <br />
                   สะสมวัตถุดิบ คราฟต์ไอเทมระดับตำนาน ด้วยฝีมือของคุณ
                 </p>
@@ -230,7 +249,7 @@ const CraftingSection = () => {
             style={{ y: useTransform(scrollYProgress, [0.2, 0.8], [50, -50]) }}
             className="grid lg:grid-cols-2 grid-cols-1 items-center gap-8 p-8 rounded-lg"
           >
-            <div className="relative lg:h-[24rem] h-[20rem] overflow-hidden">
+            <div className="relative lg:h-[24rem] h-[20rem] overflow-hidden shadow-xl shadow-amber-950">
               <Image
                 src="/assets/images/Z9NG56GJKUOS1721430736478.jpg"
                 alt="Dungeons"
@@ -277,10 +296,10 @@ const WarSection = () => {
   // Content parallax effects
   const titleY = useTransform(scrollYProgress, [0.2, 0.8], [50, -50]);
   const descY = useTransform(scrollYProgress, [0.2, 0.8], [70, -70]);
-  
+
   // Background scale effect
   const bgScale2 = useTransform(scrollYProgress, [0, 1], [1.2, 1.0]);
-  
+
   // Foreground parallax effects
   const foregroundX = useTransform(scrollYProgress, [0, 1], [0, -30]);
   const foregroundY = useTransform(scrollYProgress, [0, 1], [0, 0]);
@@ -289,7 +308,7 @@ const WarSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="h-[1080px] relative py-16 flex items-center justify-center bg-[0_center] z-[5] overflow-hidden"
+      className="h-[1080px] mt-[-20rem] relative py-16 flex items-center justify-center bg-[0_center] z-[5] overflow-hidden"
     >
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <div className="absolute inset-0 w-full h-full block md:block lg:hidden">
@@ -301,7 +320,7 @@ const WarSection = () => {
             priority
           />
         </div>
-        
+
         {/* Desktop Background Layer (hidden on sm screen) */}
         <motion.div
           className="absolute inset-0 w-full h-full hidden md:hidden lg:block"
@@ -311,25 +330,25 @@ const WarSection = () => {
             backgroundPosition: "center center",
             backgroundSize: "cover",
             scale: bgScale2,
-            transformOrigin: "center"
+            transformOrigin: "center",
           }}
-        >
-        </motion.div>
-        
+        ></motion.div>
+
         {/* Desktop Foreground Layer (hidden on sm screen) */}
         <motion.div
-          className="absolute inset-0 w-full h-full items-end justify-center hidden md:hidden lg:flex"
+          className="absolute inset-0 w-full h-full items-end justify-center hidden md:hidden lg:flex pointer-events-none"
           style={{
-            x: foregroundX
+            x: foregroundX,
           }}
         >
-          <motion.div 
+          <motion.div
             style={{
               scale: foregroundScale,
               transformOrigin: "bottom",
               width: "100%",
-              height: "90%",
-              position: "relative"
+              height: "100%",
+              position: "relative",
+              marginBottom: "-10rem",
             }}
           >
             <Image
@@ -345,31 +364,36 @@ const WarSection = () => {
 
       <motion.div
         ref={dungeonRef}
-        className="dungeon-and-rune w-full z-30"
+        className="dungeon-and-rune w-full z-30 absolute bottom-5 sm:bottom-5 md:bottom-[8%] left-0 right-0"
         initial="hidden"
         animate={isDungeonInView ? "visible" : "hidden"}
         variants={fadeUpVariants}
       >
-        <div className="mission-war container relative z-30 mx-auto px-4 md:px-6 pt-16">
-          <div className="flex w-full justify-center items-start">
+        <div className="mission-war container relative z-30 mx-auto px-4 md:px-6">
+          <div className="flex w-full justify-center items-center">
             <motion.div
               ref={titleRef}
               animate={isTitleInView ? "visible" : "hidden"}
               variants={fadeUpVariants}
-              className="subject_info space-y-4 text-center relative z-20"
+              className="subject_info space-y-4 text-center relative z-20 max-w-2xl mx-auto"
             >
-              <motion.div className="space-y-4" style={{ y: titleY }}>
-                <h1 className="text-4xl md:text-6xl font-bold text-white">
-                เข้าสู่สงครามแห่งศักดิ์ศรี
+              <motion.div style={{ y: titleY }}>
+                <h1
+                  className="text-3xl sm:text-4xl md:text-6xl font-bold text-white"
+                  style={{ textShadow: "0 0 10px rgba(0, 0, 0, 0.3)" }}
+                >
+                  เข้าสู่สงครามแห่งศักดิ์ศรี
                 </h1>
               </motion.div>
 
               <motion.div style={{ y: descY }}>
-                <p className="subject_desc text-lg text-white/80 max-w-2xl">
+                <p className="subject_desc text-base sm:text-lg text-white/90 max-w-2xl">
                   ศัตรูอยู่ทุกทิศ แต่พันธมิตรอยู่เคียงข้าง <br />
                   เข้าร่วม Mission War เพื่อพิสูจน์ความแกร่งของคุณในสนามรบจริง
                 </p>
               </motion.div>
+
+              <ButtonTheme>สำรวจข้อมูลเกม</ButtonTheme>
             </motion.div>
           </div>
         </div>
