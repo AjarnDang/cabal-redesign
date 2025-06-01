@@ -187,7 +187,7 @@ const CraftingSection = () => {
 
           {/* Fireball Effect */}
           <motion.div
-            className="absolute top-0 right-[10%] w-[200px] h-[200px] z-40"
+            className="absolute top-0 right-[10%] w-[200px] h-[200px] z-30"
             style={{
               x: fireballX,
               y: fireballY,
@@ -393,7 +393,7 @@ const WarSection = () => {
                 </p>
               </motion.div>
 
-              <ButtonTheme>สำรวจข้อมูลเกม</ButtonTheme>
+              <ButtonTheme size="large">สำรวจข้อมูลเกม</ButtonTheme>
             </motion.div>
           </div>
         </div>

@@ -9,7 +9,6 @@ import {
   ChevronRight,
   ChevronUp,
   Play,
-  PlayCircle,
 } from "lucide-react";
 import ButtonGlobal from "@/components/ButtonGlobal";
 
@@ -139,6 +138,27 @@ function Characters() {
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [totalVisible, setTotalVisible] = useState(3);
+
+  // Desktop/Mobile responsive variables
+  const desktopVisible = 5;
+  const mobileVisible = 3;
+
+  // Update totalVisible based on screen size
+  useEffect(() => {
+    const handleResize = () => {
+      setTotalVisible(
+        window.innerWidth >= 1024 ? desktopVisible : mobileVisible
+      );
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add resize listener
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Handle touch events for mobile swipe
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -207,8 +227,7 @@ function Characters() {
 
   // Calculate visible dots centered around the active dot
   const getVisibleDots = () => {
-    const totalVisible = 3; // Changed from 5 to 3
-    const middleIndex = Math.floor(totalVisible / 2); // 1 for 3 items
+    const middleIndex = Math.floor(totalVisible / 2);
 
     // If we don't have enough characters to show on one side
     if (activeIndex < middleIndex) {
@@ -280,12 +299,10 @@ function Characters() {
         </AnimatePresence>
 
         <div className="container relative z-10 mx-auto h-full flex flex-col">
-
           {/* Main Content */}
           <div className="flex-grow grid grid-cols-1 lg:flex lg:flex-row items-center">
-
-            {/* Character Info - Left on desktop, under image on mobile */}
-            <div className="character-info text-white order-2 lg:order-1 lg:w-1/4 mt-4 lg:mt-0 lg:pr-6 lg:px-0 md:px-4 px-4">
+            {/* Character Info - Left on desktop, overlaid on mobile */}
+            <div className="character-info text-white order-2 lg:order-1 lg:w-1/4 mt-0 lg:pr-6 lg:px-0 md:px-4 px-4 lg:relative lg:z-auto absolute z-20 bottom-[-10rem] left-1/2 lg:left-auto lg:bottom-auto lg:transform-none -translate-x-1/2 lg:translate-x-0 w-full max-w-md lg:max-w-none">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
@@ -319,9 +336,62 @@ function Characters() {
                   </div>
                 </motion.div>
               </AnimatePresence>
+
+              {/* Character dots navigation for mobile - Horizontal bottom */}
+              <div className="character-navigation pt-8 relative z-20 lg:hidden">
+                  <div className="flex flex-wrap justify-center items-center gap-2 md:gap-4 max-w-fit mx-auto">
+                    {/* Previous button for mobile */}
+                    <button
+                      onClick={handlePrev}
+                      className="p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors text-white/70 hover:text-white cursor-pointer"
+                      aria-label="Previous character"
+                    >
+                      <ChevronLeft size={20} />
+                    </button>
+
+                    {visibleDots.map((character, index) => {
+                      const realIndex = characters.findIndex(
+                        (c) => c.id === character.id
+                      );
+                      return (
+                        <button
+                          key={character.id}
+                          onClick={() => handleDotClick(realIndex)}
+                          className={`character-dot relative transition-all duration-300 ${
+                            realIndex === activeIndex
+                              ? "scale-125 z-10"
+                              : "opacity-60 hover:opacity-80 hover:scale-110"
+                          }`}
+                          aria-label={`Select ${character.name}`}
+                        >
+                          <img
+                            src={
+                              realIndex === activeIndex
+                                ? character.activeSymbolSrc
+                                : character.symbolSrc
+                            }
+                            alt={character.name}
+                            width={80}
+                            height={80}
+                            className="object-contain"
+                          />
+                        </button>
+                      );
+                    })}
+
+                    {/* Next button for mobile */}
+                    <button
+                      onClick={handleNext}
+                      className="p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors text-white/70 hover:text-white cursor-pointer"
+                      aria-label="Next character"
+                    >
+                      <ChevronRight size={20} />
+                    </button>
+                  </div>
+                </div>
             </div>
 
-            {/* Main Character Image - Center with flex-1 */}
+            {/* Main Character Image */}
             <div className="flex items-center justify-center relative px-4 lg:px-0 order-1 lg:order-2 lg:flex-1">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -343,15 +413,14 @@ function Characters() {
                         objectFit: "contain",
                         filter: "drop-shadow(0 0 20px rgba(255,215,0,0.1))",
                       }}
-        />
-      </div>
+                    />
+                  </div>
                 </motion.div>
               </AnimatePresence>
             </div>
 
             {/* Character dots navigation - Right on desktop, bottom on mobile */}
             <div className="order-3 lg:w-1/6">
-
               {/* Desktop vertical navigation */}
               <div className="hidden lg:flex flex-col items-end justify-center px-4">
                 <div className="py-6 px-3 flex flex-col items-center gap-4 relative">
@@ -406,62 +475,8 @@ function Characters() {
               </div>
             </div>
           </div>
-
-          {/* Character dots navigation for mobile - Horizontal bottom */}
-          <div className="character-navigation pt-8 relative z-20 lg:hidden">
-            <div className="flex flex-wrap justify-center items-center gap-2 md:gap-4 max-w-fit mx-auto">
-              {/* Previous button for mobile */}
-              <button
-                onClick={handlePrev}
-                className="p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors text-white/70 hover:text-white cursor-pointer"
-                aria-label="Previous character"
-              >
-                <ChevronLeft size={20} />
-              </button>
-
-              {visibleDots.map((character, index) => {
-                const realIndex = characters.findIndex(
-                  (c) => c.id === character.id
-                );
-                return (
-                  <button
-                    key={character.id}
-                    onClick={() => handleDotClick(realIndex)}
-                    className={`character-dot relative transition-all duration-300 ${
-                      realIndex === activeIndex
-                        ? "scale-125 z-10"
-                        : "opacity-60 hover:opacity-80 hover:scale-110"
-                    }`}
-                    aria-label={`Select ${character.name}`}
-                  >
-                    <img
-                      src={
-                        realIndex === activeIndex
-                          ? character.activeSymbolSrc
-                          : character.symbolSrc
-                      }
-                      alt={character.name}
-                      width={80}
-                      height={80}
-                      className="object-contain"
-                    />
-                  </button>
-                );
-              })}
-
-              {/* Next button for mobile */}
-              <button
-                onClick={handleNext}
-                className="p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors text-white/70 hover:text-white cursor-pointer"
-                aria-label="Next character"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
-          </div>
         </div>
-
-    </section>
+      </section>
 
       {/* Fancy Divider Bottom */}
       <div
