@@ -215,7 +215,7 @@ const CraftingSection = () => {
           <div className="grid lg:grid-cols-2 grid-cols-1 items-center gap-8 p-8 rounded-lg">
             <div className="relative overflow-hidden"></div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-end">
               <div className="lg:text-left text-center">
                 <h3
                   className="text-4xl font-bold mb-4"
