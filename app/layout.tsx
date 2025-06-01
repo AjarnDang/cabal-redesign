@@ -18,7 +18,7 @@ const bellefair = Bellefair({
 });
 
 export const metadata: Metadata = {
-  title: "CABAL Infinite Combo",
+  title: "CABAL Infinite Combo - Redesigned",
   description: "เกมออนไลน์ที่จะพาคุณเข้าสู่โลกแห่งการผจญภัย",
   keywords: ["CABAL", "game", "MMORPG", "online game", "เกมออนไลน์"],
 };
