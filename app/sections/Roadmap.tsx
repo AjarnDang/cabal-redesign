@@ -71,7 +71,7 @@ const Roadmap = () => {
 
             {/* Right Column - Content */}
             <motion.div className="subject_info space-y-6 lg:text-left text-center relative z-20">
-              <motion.div className="space-y-1" style={{ y: titleY }}>
+              <motion.div className="space-y-1">
                 <h6 className="subject_title font-['Bellefair'] text-white">
                   THE INFINITE WAR OF CELESTIALS
                 </h6>
@@ -87,7 +87,7 @@ const Roadmap = () => {
                 </p>
               </motion.div>
 
-              <div className="lg:flex items-center md:block block gap-3">
+              <div className="lg:flex items-center md:block block gap-3 lg:mb-0 md:mb-6 mb-6">
                 <ButtonTheme type="primary" size="large">
                   เข้าร่วม
                 </ButtonTheme>

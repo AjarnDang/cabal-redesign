@@ -49,7 +49,7 @@ function Hero() {
         animate={isContentInView ? "visible" : "hidden"}
         variants={fadeUpVariants}
       >
-        <div className="text-center text-white mb-12">
+        <div className="text-center text-white mb-12 lg:px-0 md:px-2 px-2">
           <div className="mb-6">
             <h3 className="text-xl md:text-3xl leading-16 font-semibold">
               สงความแห่งความเท่าเทียม

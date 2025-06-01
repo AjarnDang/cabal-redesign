@@ -370,14 +370,14 @@ const WarSection = () => {
         variants={fadeUpVariants}
       >
         <div className="mission-war container relative z-30 mx-auto px-4 md:px-6">
-          <div className="flex w-full justify-center items-center">
+          <div className="flex w-full justify-center items-center lg:pb-0 md:pb-8 pb-8">
             <motion.div
               ref={titleRef}
               animate={isTitleInView ? "visible" : "hidden"}
               variants={fadeUpVariants}
               className="subject_info space-y-4 text-center relative z-20 max-w-2xl mx-auto"
             >
-              <motion.div style={{ y: titleY }}>
+              <motion.div>
                 <h1
                   className="text-3xl sm:text-4xl md:text-6xl font-bold text-white"
                   style={{ textShadow: "0 0 10px rgba(0, 0, 0, 0.3)" }}
@@ -386,7 +386,7 @@ const WarSection = () => {
                 </h1>
               </motion.div>
 
-              <motion.div style={{ y: descY }}>
+              <motion.div>
                 <p className="subject_desc text-base sm:text-lg text-white/90 max-w-2xl">
                   ศัตรูอยู่ทุกทิศ แต่พันธมิตรอยู่เคียงข้าง <br />
                   เข้าร่วม Mission War เพื่อพิสูจน์ความแกร่งของคุณในสนามรบจริง
